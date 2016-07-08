@@ -194,7 +194,7 @@ class ReduxNavigatorProvider extends Component{
 
 
   render() {
-    const {initialRoute, renderScene, configureScene} = this.props
+    const {initialRoute, renderScene, configureScene, ...other} = this.props
     if(!initialRoute) {
       return null
     }
@@ -203,6 +203,7 @@ class ReduxNavigatorProvider extends Component{
         initialRoute={initialRoute}
         renderScene={this._renderScene}
         configureScene={configureScene}
+        {...other}
         ref="nav"
       />
     )
