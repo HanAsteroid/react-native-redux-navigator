@@ -29,16 +29,19 @@ const reducers = combineReducers({
 ```
 
 ##### 使用组件
-
+ReduxNavigatorProvider组件封装了Navigator，在其基础上结合了redux进行工作。 
 ``` javascript
-
-      <ReduxNavigatorProvider
-        initialRoute={{name : "index"}}
-        renderScene={(route, query) => {
-          return <View><Text>hello</Text></View>
-        }}
-        configScene={(route) => Navigator.SceneConfigs.FloatFromRight}
-      />
+import {ReduxNavigatorProvider} from 'react-native-redux-navigator'
+// ...
+// 具体属性参考React Native Navigator
+// React Native Navigator的属性都可以使用
+<ReduxNavigatorProvider
+  initialRoute={{name : "index"}}
+  renderScene={(route, query) => {
+    return <View><Text>hello</Text></View>
+  }}
+  configScene={(route) => Navigator.SceneConfigs.FloatFromRight}
+/>
       
 
 ```
@@ -51,12 +54,39 @@ import actions:
 import { navTo, navBack, navReset, navReload }  from "react-native-redux-navigator"
 ```
 
-##### navTo
+##### navTo (route, query , replace = false)
+跳转到某一路由
 参数说明
-- route 
-- query
-- replace
+- route 路由对象
+- query 页面参数（类似html页面的query）
+- replace 默认值是false, 这个参数决定路由执行push还是replace
 
+##### navBack({backToFilter, refresh = false, emptyTarget} )
+回退
+参数说明
+- backToFilter 传入一个函数， 决定回退到某一张页面
+- emptyTarget 路由对象： 如果已经在第一张页面了， 然后去哪里
+- refresh
+
+``` javascript
+// 回退到某一张name = 'Login'的页面
+dispatch( {backToFilter : navBack( (route) => route.name === 'Login' )} )
+
+// 回退一张页面
+dispatch( navBack() )
+
+// 回退一张页面并刷新
+// 比如到某张页面需要登录， 然后登录完成后，回退到之前的页面并刷新
+dispatch( navBack({refresh : true}) )
+
+// 如果已经在第一张页面了， 则回退到首页
+dispatch( navBack({emptyTarget : {name : "Home"}})
+
+
+```
+
+#### navReset(route)
+重置整个路由栈，比
 
 
 
