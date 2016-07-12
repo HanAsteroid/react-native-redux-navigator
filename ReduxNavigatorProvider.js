@@ -182,11 +182,8 @@ class ReduxNavigatorProvider extends Component{
     if(!route.__key) {
       route.__key = this.__id_counter++
     }
-    const C = this.props.renderScene(route, route.query)
-    const {query} = route
-
-    const newElement = React.cloneElement(C, {key : route.__key})
-    return newElement
+    const C = this.props.renderScene(route, route.query || {})
+    return React.cloneElement(C, {key : route.__key})
   }
 
 
