@@ -46,7 +46,6 @@ class ReduxNavigatorProvider extends Component{
     if(Platform.OS === 'android') {
       BackAndroid.addEventListener('hardwareBackPress', (() => {
 
-        console.log("aaa")
         if(this.refs.nav.getCurrentRoutes().length === 1) {
           if(this.exit_try === 0) {
             ToastAndroid.show("再按一次回退键离开", ToastAndroid.SHORT)
@@ -187,7 +186,6 @@ class ReduxNavigatorProvider extends Component{
     const {query} = route
 
     const newElement = React.cloneElement(C, {key : route.__key})
-    console.log(newElement)
     return newElement
   }
 
