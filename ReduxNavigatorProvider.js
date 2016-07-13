@@ -66,10 +66,17 @@ class _ReduxNavigatorProvider extends Component{
 
   }
 
-  _navTo(evt_id, {route, replace}){
+  _navTo(evt_id, {route, replace, immediately}){
     if(!replace) {
-      this.refs.nav.push(route)
+      if(immediately) {
+        let stack = this.refs.nav.getCurrentRoutes()
+        stack.push(stack[stack.length - 1])
+        this.refs.nav.replace(route)
+      } else {
+        this.refs.nav.push(route)
+      }
     } else {
+
       this.refs.nav.replace(route)
     }
     this.props.dispatch( navConsumeAll(evt_id) )

@@ -19,7 +19,7 @@ import * as NAV_METHODS from './nav_methods'
  * Navigator to a route
  * @param route a route : route := route => {name, component}
  */
-export const navTo = (route, query , replace = false) => {
+export const navTo = (route, query , replace = false, immediately = false) => {
   invariant(route, "navTo fail, argument route is required")
   invariant(route['name'], 'navTo fail, route must have child prop name')
   invariant(route['Component'], 'navTo fail, route must have child prop Component')
@@ -31,7 +31,8 @@ export const navTo = (route, query , replace = false) => {
         params : {
           method : NAV_METHODS.NAV_TO,
           route : {...route, query},
-          replace
+          replace,
+          immediately
         }
       })
     })
