@@ -54,12 +54,13 @@ import actions:
 import { navTo, navBack, navReset, navReload }  from "react-native-redux-navigator"
 ```
 
-##### navTo (route, query , replace = false)
+##### navTo (route, query , replace = false, immediately = false)
 跳转到某一路由
 参数说明
 - route 路由对象
 - query 页面参数（类似html页面的query）
 - replace 默认值是false, 这个参数决定路由执行push还是replace
+- immediately 默认值false， 如果immediately设置为true则不会播放动画
 
 ##### navBack({backToFilter, refresh = false, emptyTarget} )
 回退
@@ -70,7 +71,7 @@ import { navTo, navBack, navReset, navReload }  from "react-native-redux-navigat
 
 ``` javascript
 // 回退到某一张name = 'Login'的页面
-dispatch( {backToFilter : navBack( (route) => route.name === 'Login' )} )
+dispatch( navBack({backToFilter : navBack( (route) => route.name === 'Login' )}) )
 
 // 回退一张页面
 dispatch( navBack() )

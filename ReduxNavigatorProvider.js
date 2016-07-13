@@ -70,8 +70,8 @@ class _ReduxNavigatorProvider extends Component{
     if(!replace) {
       if(immediately) {
         let stack = this.refs.nav.getCurrentRoutes()
-        stack.push(stack[stack.length - 1])
-        this.refs.nav.replace(route)
+        stack.push(route)
+        this.refs.nav.immediatelyResetRouteStack(stack)
       } else {
         this.refs.nav.push(route)
       }
