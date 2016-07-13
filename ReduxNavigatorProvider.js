@@ -22,7 +22,8 @@ import {navConsumeAll} from "./internal-action"
 import {navBack} from "./action"
 import * as NAV_METHODS from "./nav_methods"
 
-class ReduxNavigatorProvider extends Component{
+let __navigator = null
+class _ReduxNavigatorProvider extends Component{
 
   constructor(){
     super()
@@ -179,6 +180,7 @@ class ReduxNavigatorProvider extends Component{
   }
 
   _renderScene(route, navigator){
+    __navigator = navigator
     if(!route.__key) {
       route.__key = this.__id_counter++
     }
@@ -215,9 +217,11 @@ const mapStateToProps = state => {
   }
 }
 
-module.exports = connect(mapStateToProps)(ReduxNavigatorProvider)
+export let ReduxNavigatorProvider = connect(mapStateToProps)(_ReduxNavigatorProvider)
 
 
-
+export const getNavigator = () => {
+  return __navigator
+}
 
 
