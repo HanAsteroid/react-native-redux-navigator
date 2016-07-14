@@ -1,6 +1,6 @@
 {
   "name": "react-native-redux-navigator",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "A redux connect for react native and Navigator",
   "main": "index.js",
   "scripts": {

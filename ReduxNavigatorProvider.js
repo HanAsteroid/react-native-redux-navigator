@@ -60,6 +60,7 @@ class _ReduxNavigatorProvider extends Component{
           }
         } else {
           this.props.dispatch(navBack())
+          return true
         }
       }).bind(this));
     }
