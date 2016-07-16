@@ -8,7 +8,9 @@ import invariant from 'invariant'
 import {
   NAVIGATOR_CONSUME,
   NAVIGATOR_PRODUCE,
-  NAVIGATOR_SET_INITAL
+  NAVIGATOR_SET_INITAL,
+  SET_ANDROID_NAV_KEY_LISTENER,
+  REMOVE_ANDROID_NAV_KEY_LISTENER
 } from "./nav_action_types"
 
 
@@ -80,5 +82,19 @@ export const navReload = () => {
     params : {
       method : NAV_METHODS.NAV_RELOAD,
     }
+  }
+}
+
+
+export const setAndroidBackKeyListener = (handler) => {
+  return {
+    type : SET_ANDROID_NAV_KEY_LISTENER,
+    handler
+  }
+}
+
+export const removeAndroidBackKeyListener = () => {
+  return {
+    type : REMOVE_ANDROID_NAV_KEY_LISTENER
   }
 }

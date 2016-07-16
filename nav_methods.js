@@ -13,3 +13,4 @@ export const NAV_RESET = "nav-methods@navReset"
 export const NAV_REPLACE_WITH_ANIMATION = 'nav-methods@navReplaceWithAnimation'
 
 export const NAV_RELOAD = 'nav-methods@navReload'
+

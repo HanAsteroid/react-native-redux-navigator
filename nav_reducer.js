@@ -8,12 +8,15 @@ const initialState = {
   _message_queue : [],
   __lock : false,
   __event_id_counter : 1,
+  android_back_handler  : null
 }
 
 import {
   NAVIGATOR_CONSUME,
   NAVIGATOR_PRODUCE,
-  NAVIGATOR_SET_INITAL
+  NAVIGATOR_SET_INITAL,
+  SET_ANDROID_NAV_KEY_LISTENER,
+  REMOVE_ANDROID_NAV_KEY_LISTENER
 } from './nav_action_types'
 
 import * as METHOD_TYPES from './nav_methods'
@@ -64,6 +67,10 @@ export const navigator = ( state = initialState, action ) => {
 
     case NAVIGATOR_CONSUME:
       return __consume(state, action)
+    case SET_ANDROID_NAV_KEY_LISTENER :
+      return {...state, android_back_handler : action.handler}
+    case REMOVE_ANDROID_NAV_KEY_LISTENER :
+      return {...state, android_back_handler : null}
   }
 
   return state
