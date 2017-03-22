@@ -50,7 +50,7 @@ class _ReduxNavigatorProvider extends Component{
         if(this.props.navigator.android_back_handler) {
           return this.props.navigator.android_back_handler(this.refs.nav)
         }
-        if(this.refs.nav.getCurrentRoutes().length === 1) {
+        if(this.refs.nav && this.refs.nav.getCurrentRoutes().length === 1) {
           if(this.exit_try === 0) {
             ToastAndroid.show("再按一次回退键离开", ToastAndroid.SHORT)
             setTimeout( (() => {
