@@ -13,7 +13,8 @@ import {
   BackAndroid,
   Alert,
   ToastAndroid,
-  Platform
+  Platform,
+  TextInput
 } from 'react-native'
 
 import { connect } from 'react-redux'
@@ -21,7 +22,10 @@ import { connect } from 'react-redux'
 import {navConsumeAll} from "./internal-action"
 import {navBack} from "./action"
 import * as NAV_METHODS from "./nav_methods"
-
+const { State: TextInputState } = TextInput;
+export default function dismissKeyboard() {
+  TextInputState.blurTextInput(TextInputState.currentlyFocusedField());
+}
 let __navigator = null
 class _ReduxNavigatorProvider extends Component{
 
@@ -71,6 +75,7 @@ class _ReduxNavigatorProvider extends Component{
   }
 
   _navTo(evt_id, {route, replace, immediately}){
+    dismissKeyboard();
     if(!replace) {
       if(immediately) {
         let stack = this.refs.nav.getCurrentRoutes()
@@ -87,6 +92,7 @@ class _ReduxNavigatorProvider extends Component{
   }
 
   _navReload(evt_id){
+    dismissKeyboard();
     let stack = this.refs.nav.getCurrentRoutes().slice()
     const current = stack.pop()
     current.key = null
@@ -96,7 +102,7 @@ class _ReduxNavigatorProvider extends Component{
   }
 
   _navBack(event_id, {backToFilter, refresh, emptyTarget}){
-
+    dismissKeyboard();
     let stack = this.refs.nav.getCurrentRoutes()
 
     let popTo = null
@@ -140,6 +146,7 @@ class _ReduxNavigatorProvider extends Component{
   }
 
   _navReload(event_id) {
+    dismissKeyboard();
     let stack = this.refs.nav.getCurrentRoutes()
     stack[stack.length - 1].__key = null
     this.refs.nav.replaceAtIndex(stack[stack.length - 1], stack.length - 1)
@@ -147,6 +154,7 @@ class _ReduxNavigatorProvider extends Component{
   }
 
   _navReset(event_id, {route} ) {
+    dismissKeyboard();
     this.refs.nav.resetTo(route)
     this.props.dispatch(navConsumeAll(event_id))
   }
